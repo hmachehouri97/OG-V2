@@ -14,7 +14,7 @@ CI-Compatible Chrome Launch
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-gpu
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
-    Call Method    ${options}    add_argument    --user-data-dir=${tmpdir}
+    Call Method    ${options}    add_argument    --user-data-dir\=${tmpdir}
     Open Browser   ${LOGIN_URL}    ${BROWSER}    options=${options}
 Open Browser To SignUp Page
     Maximize Browser Window
