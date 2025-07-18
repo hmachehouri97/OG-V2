@@ -15,10 +15,10 @@ ${PASSWORD_FIELD}            id=signUp_password
 ${PASSWORD_CONFIRMTION_FIELD}      id=signUp_confirmNewPassword
 ${SUBMIT_BUTTON}             xpath=//*[@id="signUp"]/div[5]/div/div/div/div/button
 
-# Add Created Data Sources
+# Add Created Data Sources Postgres
 ${ADD_DADATCOURCE_URL}       https://workspace-preprod.onegate.ai/data-management/data-source
-${Created_Data_Sources_button}   xpath=//button[@class='ant-btn css-240cud ant-btn-default ant-btn-color-default ant-btn-variant-outlined create-button']
-${NAME_DATABESE_NAME}            xpath=//div[@id='datacenter-modal']/div[2]/div[2]/div/div/div/div/div/div[2]/div/div[4]/div/div/div[2]/div[2]/div
+${Created_Data_Sources_button}   css=.ant-btn-default
+${NAME_DATABESE_NAME}            css=div:nth-child(1) > .sc-cYGPea > .sc-EkXxQ:nth-child(2)
 ${Display_name_input}            xpath=//input[@id='displayName']
 ${Host_input}                    xpath=//input[@id='host']
 ${Schema_name_input}             xpath=//input[@id='schemaName']
@@ -28,22 +28,25 @@ ${Port_input}                    xpath=//input[@id='port']
 ${Username_input}                xpath=//input[@id='username']
 ${SUBMIT_BUTTON_DATASURCE}       css=.ant-btn-primary
 ${dataset_name_input}            id=datasetName
-${Continue_button_1}             css=button.ant-btn:nth-child(2)
-${data_selection_departments}    xpath=//div[@class='ant-tree-list-holder-inner']//div[1]//span[3]//span[1]
-${data_selection_employees}      xpath=//div[@class='sc-fwYydN chWKIB']//div[2]//span[3]//span[1]
-${move_button}                   xpath=//div[@class='sc-fPNgKA ffTlyV']//button[1]
+${Continue_button_1}             css=.ant-btn-primary > .sc-hmSPIQ
+${data_selection_departments}                 css=.ant-tree-treenode:nth-child(1) .ant-tree-checkbox-inner
+${data_selection_employees}                   css=.ant-tree-treenode:nth-child(2) .ant-tree-checkbox-inner
+${data_selection_project_assignments}         css=.ant-tree-treenode:nth-child(3) .ant-tree-checkbox-inner
+${data_selection_projects}                    css=.ant-tree-treenode:nth-child(4) .ant-tree-checkbox-inner
+${data_selection_salary_history}              css=.ant-tree-treenode:nth-child(5) .ant-tree-checkbox-inner
+${move_button}                   css=.ant-btn-primary:nth-child(1)
 ${Continue_button_2}             xpath=/html/body/div/div/div[2]/div/main/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div[2]/div[3]/button[2]/span
-${Ai_button_continue}            xpath=/html/body/div/div/div[2]/div/main/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div[2]/div/div[2]/button[2]/span
+${Ai_button_continue}            css=.ant-btn-primary > span
 ${departments_table_selection}   xpath=/html/body/div[1]/div/div[2]/div/main/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/div[1]/div/div[3]/div/div/div/div[2]/span[3]/span
 ${Continue_button_3}             xpath=/html/body/div[1]/div/div[2]/div/main/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div[2]/div[2]/button
-${AI_button__genrate}            xpath=/html/body/div[1]/div/div[2]/div/main/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/div[2]/form/div/div/div[2]/div/div/button
-${skipe_button}                  css=.anticon-close > svg:nth-child(1) > path:nth-child(1)
+${AI_button__genrate}            xpath=/html/body/div[2]/div/div[2]/div/main/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/div[2]/form/div/div/div[2]/div/div/textarea
+${skipe_button}                  xpath=//button[@class='ant-btn css-1rmcml1 ant-btn-text ant-btn-color-default ant-btn-variant-text ant-btn-lg sc-dSSyN bEKtYn']
 ${datasets_button}               xpath=//div[@id='rc-tabs-7-tab-data-sets']
-${Datasets}                      id=rc-tabs-1-tab-data-sets
-${Dataset_Deleting_bt}           css=.ant-tooltip-open > svg
-${Dataset_Cfr_bt_del}            css=.ant-btn-link > span
-${Datasource_Deleting_bt}        css=.ant-tooltip-open path
-${Datasource_Cfr_Bt_del}         css=.ant-tooltip-open path
+${Datasets}                      css=div.ant-tabs-tab:nth-child(2)
+${Dataset_Deleting_bt}           css=.td-actions > a:nth-child(3)
+${Dataset_Cfr_bt_del}            css=.ant-btn-link
+${Datasource_Deleting_bt}        css=.td-actions > a:nth-child(5)
+${Datasource_Cfr_Bt_del}         css=.ant-btn-link
 
 # OG Chat
 ${Chat_URl}            https://workspace-preprod.onegate.ai/chat
@@ -51,26 +54,27 @@ ${Chat_input}          id=input
 ${Dataset_connection}  id=dataset_id
 ${dataset_name}        xpath=/html/body/div[2]/div/div/div[2]/div/div/div/div[2]/div/div/div
 ${Chat_button_send}    xpath=/html/body/div/div/div[2]/div/main/div/div[2]/div/form/div[2]/div[2]/div[2]/div/div/div/div/button/span[2]
-${Send_button}         css=.ant-btn-primary:nth-child(1) > .ant-btn-icon
-${Add_Dashboard_button}    css=.sc-lfhmhd > span:nth-child(2)
-${SUBMIT_DASHBOARD_BUTTON}  css=.ok-button > span
-${Add_Page_button}     css=.sc-dZKHcv > span:nth-child(2)
-${SUBMIT_PAGE_BUTTON}  xpath=//button[@type='submit']
-${ADD_FOR_ME_BUTTON}   css=.ant-btn-default:nth-child(1) > span
-${GO_TO_DASHBOARD_BUTTON}  xpath=//button[contains(.,'Go to Dashboard')]
-
+${Send_button}         css=button.ant-btn-primary:nth-child(1)
+${Add_Dashboard_button}    css=div[class='ant-popover css-1rmcml1 css-1rmcml1 ant-popover-placement-left'] span:nth-child(2)
+${SUBMIT_DASHBOARD_BUTTON}  css=button[class='ant-btn css-1rmcml1 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ok-button'] span
+${Add_Page_button}     css=.sc-dToawr > span:nth-child(2)
+${SUBMIT_PAGE_BUTTON}  css=button[class='ant-btn css-1rmcml1 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ok-button'] span
+${ADD_FOR_ME_BUTTON}   css=.ant-btn-default:nth-child(1)
+${GO_TO_DASHBOARD_BUTTON}  xpath=//span[contains(.,'Go to Dashboard')]
 
 # Add Dashboard Page
-${ADD_DASHBOARD_URL}       https://workspace-preprod.onegate.ai/dashboard
-${NAME_DASHBOARD_FIELD}     id=name
-${DESCRIPTION_DASHBOARD_FIELD}       id=description
-${SUBMIT_BUTTON_DASHBOARD}      xpath=//button[@class='create-dashboard']
-
+${ADD_DASHBOARD_URL}                https://workspace-preprod.onegate.ai/dashboard
+${NAME_DASHBOARD_FIELD}             id=name
+${DESCRIPTION_DASHBOARD_FIELD}      id=description
+${SUBMIT_BUTTON_DASHBOARD}          xpath=//button[@class='create-dashboard']
+${delete_list_bt}                   xpath=//*[@id="dashboard-modal"]/div[2]/div[2]/div[2]/div[1]/div/div[1]/a/div[1]/div/div/button
+${delete_button}                    xpath=//*[@id=":rj:"]/div/div/div[3]
+${delete_button_Cfr_dash}           xpath=//*[@id="dashboard-modal"]/div[3]/div[2]/div/div[1]/div/div[1]/div[2]/button[2]
 # Add Page Dashboard
 ${NAME_PAGE_FIELD}     id=name
 ${TYPE_PAGE_FIELD}     id=type
-${TYPE_PAGE}           css=.ant-select-item-option-active > .ant-select-item-option-content
-${SUBMIT_BUTTON_DASHBOARD_PAGE}     xpath=//*[@id="dashboard-modal"]/div[2]/div[2]/div/div[1]/div/div[2]/button[2]
+${TYPE_PAGE}           css=div.ant-select-item:nth-child(1) > div:nth-child(1)
+${SUBMIT_BUTTON_DASHBOARD_PAGE}     xpath=//*[@id="dashboard-modal"]/div[2]/div[2]/div/div[1]/div/div[1]/div/button[2]
 
 # Add Workspace Page
 ${ADD_Workspace_URL}       https://workspace-preprod.onegate.ai/workspace
@@ -78,12 +82,19 @@ ${NAME_Workspace_FIELD}     id=name
 ${SUBMIT_BUTTON_Workspace}      xpath=//*[@id="workspace-modal"]/div[3]/div[2]/div/div[1]/div/div[1]/div/form/div[2]/button
 
 # Add User To Workspace Page
-${ADD_USERWORKSPACE_URL}       https://workspace-preprod.onegate.ai/workspace/user-management
+${ADD_USERWORKSPACE_URL}       https://workspace-preprod.onegate.ai/workspace
 ${FIRST_NAME_FIELD_WORKSPACE}          id=firstName
 ${LAST_NAME_FIELD_WORKSPACE}           id=lastName
 ${EMAIL_FIELD_WORKSPACE}               id=email
-${PERMISSIONS_FIELD_WORKSPACE}         xpath=//*[@id="usermanagement-modal"]/div[3]/div[2]/div/div[1]/div/div[1]/div/form/div[3]/div/div/div[2]/div/div/div  
-${SUBMIT_BUTTON_INVITE_USER}           xpath=/html/body/div/div/div[2]/div/main/div/div/div[3]/div[2]/div/div[1]/div/div[1]/div/form/div[4]/button
+${PERMISSIONS_FIELD_WORKSPACE}         id=permissionNames  
+${Dashboard_Premission}                css=div.ant-select-tree-treenode:nth-child(1) > span:nth-child(3)
+${Datascource_Premission}              css=div.ant-select-tree-treenode-switcher-close:nth-child(2) > span:nth-child(3)
+${Dataset_Premission}                  css=div.ant-select-tree-treenode:nth-child(3) > span:nth-child(3)
+${chat_Premission}                     css=div.ant-select-tree-treenode:nth-child(4) > span:nth-child(3)
+${SUBMIT_BUTTON_INVITE_USER}           css=.sc-exXyvj > span
+${Dropdown_button}                     css=.ant-btn.css-240cud.ant-btn-text.ant-btn-color-default.ant-btn-variant-text.ant-btn-icon-only.sc-eiwqOE.knWhde
+${delete_user_button}                  css=.sc-dkBYrC.eHYzLA
+
 
 # Test Data
 ${ADMIN_USER}         admin@admin.com
@@ -104,4 +115,4 @@ ${Password}          9W4p_2-ig4xw9k?
 ${Name}              postgres      
 ${Port}              6543     
 ${Username}          postgres.jurkpdkeybprgdfurftu
-${dataset_name}      Postgresqol_1
+${dataset_name_datasources}      Postgresqol_1

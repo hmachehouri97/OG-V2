@@ -10,23 +10,30 @@ Library    ScreenCapLibrary
 Open Browser To SignUp Page
     Open Browser                ${LOGIN_URL}        ${BROWSER}
     Maximize Browser Window
-    Set Selenium Speed    0.5
+    Set Selenium Speed    0.4
     Wait Until Page Contains Element    xpath=//*[@id="dataone-app"]/div/div[1]/div[2]/h1    10s  
 Login With Credentials
-    [Arguments]                 ${username}         ${password}
-    Input Username              ${username}
-    Input Password              ${password}
+    Reload Page
+    [Arguments]                 ${VALID_EMAIL}         ${VALID_PASS}
+    Input Username              ${VALID_EMAIL}
+    Input Password              ${VALID_PASS}
     Submit Credentials
-    Run Keyword If              '${username}' == '${VALID_EMAIL}'    Verify Login Success
-    ...    ELSE                 Verify Login Failure
+    Verify Login Success
+
+login With Invalid Credentials
+    [Arguments]                 ${INVALID_EMAIL}       ${INVALID_PASS}
+    Input Username              ${INVALID_EMAIL}
+    Input Password              ${INVALID_PASS}
+    Submit Credentials
+    Verify Login Failure
 
 Input Username
-    [Arguments]                 ${username}
-    Input Text                  id=username            ${username} 
+    [Arguments]                 ${VALID_EMAIL}
+    Input Text                  id=username            ${VALID_EMAIL} 
 
 Input Password
-    [Arguments]                 ${password}    
-    Input Text                  id=password         ${password}
+    [Arguments]                 ${VALID_PASS}    
+    Input Text                  id=password         ${VALID_PASS}
     
 
 Input Confirm Password  
@@ -56,12 +63,15 @@ FIll DATA Sources
     Input Text    ${Username_input}    ${Username}
     Click Element  ${SUBMIT_BUTTON_DATASURCE}
     Sleep    10s
-    Input Text    ${dataset_name_input}    ${dataset_name}
+    Input Text       ${dataset_name_input}   ${dataset_name_datasources}
     Click Element    ${Continue_button_1}
     Sleep    5s
 Data Prep
     Click Element    ${data_selection_departments}
     Click Element    ${data_selection_employees}
+    Click Element    ${data_selection_project_assignments}
+    Click Element    ${data_selection_projects}
+    Click Element    ${data_selection_salary_history}
     Click Button     ${move_button}
     Click Element     ${Continue_button_2}
     Sleep    3s
@@ -69,37 +79,36 @@ Data Prep
 AI training
      Click Element    ${Ai_button_continue}
      Sleep    5s
-     Click Element   ${departments_table_selection}
-     Click Element    ${AI_button__genrate}
-     Sleep    5s
-     Click Element    ${Continue_button_3}
+     Click Element    ${Continue_button_3}     
      Sleep    5s
      Click Element    ${skipe_button}
 
 Verify Datasource and dataset Creation Success
-    Table Column Should Contain    xpath=/html/body/div[1]/div/div[2]/div/main/div/div/div[2]/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr[1]/td[1]/div/span   1    ${Display_name} 
-    Click Button    ${datasets_button}
     Sleep    2s
-    Table Column Should Contain    xpath=/html/body/div[1]/div/div[2]/div/main/div/div/div[2]/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr[1]/td[1]/div/span    1   ${dataset_name}
-    Table Row Should Contain    xpath=//*[@id="rc-tabs-0-panel-data-sources"]/div[2]/table/tbody/tr[1]/td[1]/div/span    1    ${dataset_name}
-
+    Table Column Should Contain    xpath=/html/body/div[16]/div/div[2]/div/main/div/div/div[2]/div[3]/div/div[2]/div/div/div[1]/table/tbody/tr/td[1]/div/span   1    ${Display_name} 
+    Click Element    ${Datasets}
+    Sleep    2s
+    Table Column Should Contain    xpath=/html/body/div[16]/div/div[2]/div/main/div/div/div[2]/div[3]/div/div[2]/div/div/div[1]/table/tbody/tr[2]/td[1]/div/span    1   ${dataset_name}
 Navigate to Chat
     Go To           ${Chat_URl}
     Sleep   10s
     Click Element    ${Dataset_connection}
     Click Element    ${dataset_name}
 Chat With The AI
-    Input Text       ${Chat_input}    How many employees are assigned to each department?
+    Input Text       ${Chat_input}    What information is available about each department?
     Sleep    8s
-Send The Chart To Dashboard
     Click Element    ${Chat_button_send}
     Sleep    20s
+Send The Chart To Dashboard
     Click Element   ${Send_button}
     Sleep    6s
     Click Element    ${Add_Dashboard_button}
     Input Text       ${NAME_DASHBOARD_FIELD}    ${NEW_NAME_DASHBOAD}
     Input Text       ${DESCRIPTION_DASHBOARD_FIELD}    ${NEW_DESCRIPTION_DASHBOARD}
     Click Element    ${SUBMIT_DASHBOARD_BUTTON}
+    Reload Page
+    Sleep    5s
+    Click Element   ${Send_button}
     Sleep    5s
     Click Element    css=div:nth-child(1) > .dashboard-list-title
     Click Element    ${Add_Page_button}
@@ -112,7 +121,7 @@ Send The Chart To Dashboard
     Click Element    xpath=//h3[contains(.,'${NEW_PAGE_NAME}')]
     Sleep    2s
     Click Element    ${ADD_FOR_ME_BUTTON}
-    Sleep    2s
+    Sleep    4s
     Click Element    ${GO_TO_DASHBOARD_BUTTON}
     Sleep    7s
 
@@ -133,13 +142,12 @@ Verify Dashboard Creation Success
     Wait Until Page Contains     Dashboard1  5s
 
 Navigate To Dashboard Creation
-    Reload Page 
     Sleep    3s
-    Click Element    xpath=//*[@id="dashboard-modal"]/div[2]/div[3]/div/div/div/a
+    Click Element    xpath=//*[@id="${NEW_NAME_DASHBOAD}"]/div[2]/div[3]/div/div/div/a
     Wait Until Page Contains   Dashboard1  5s 
 
 Dashboard Page Creation
-    Click Button    xpath=//*[@id="dashboard-modal"]/div/div[2]/div/button
+    Click Element    xpath=//button[@class='ant-btn css-1rmcml1 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg']
     Wait Until Element Is Visible    ${NAME_PAGE_FIELD}    10s
 
 Fill Dashboard Page Form
@@ -167,32 +175,34 @@ Submit Workspace Creation
 
 Navigate To Add New User
     Go To    ${ADD_USERWORKSPACE_URL}
-    Wait Until Page Contains   User Management
+    Wait Until Page Contains   Workspace
     Sleep    2s
-    Click Element  css=.ant-btn-default
-    Click Element    css=.sc-SPJDV:nth-child(1)
+    Click Element    css=div[class='ant-layout css-1rmcml1'] button:nth-child(1) span:nth-child(1)
+    Click Element    css=div[class='sc-chSgpA fzksCJ'] div:nth-child(1)
     Wait Until Element Is Visible    ${FIRST_NAME_FIELD_WORKSPACE}    10s
 
 Fill New User Workspace Form
-    Input Text      ${FIRST_NAME_FIELD_WORKSPACE}  ${NEW_USER_FRIST_NAME}
-    Input Text      ${LAST_NAME_FIELD_WORKSPACE}  ${NEW_USER_LAST_NAME}
-    Input Text      ${EMAIL_FIELD_WORKSPACE}  ${NEW_USER_EMAIL}
-    Click Element      ${PERMISSIONS_FIELD_WORKSPACE}
-    Click Element    xpath=/html/body/div[2]/div/div/div/div/div[3]/div/div/div/div[1]/span[4]/span
-    Click Element    xpath=/html/body/div[2]/div/div/div/div/div[3]/div/div/div/div[2]
-    Click Element    xpath=/html/body/div[2]/div/div/div/div/div[3]/div/div/div/div[3]
-    Click Element    xpath=/html/body/div[2]/div/div/div/div/div[3]/div/div/div/div[4]
-    Click Element      ${PERMISSIONS_FIELD_WORKSPACE}
-    Click Element   ${SUBMIT_BUTTON_INVITE_USER}
+    Input Text       ${FIRST_NAME_FIELD_WORKSPACE}  ${NEW_USER_FRIST_NAME}
+    Input Text       ${LAST_NAME_FIELD_WORKSPACE}  ${NEW_USER_LAST_NAME}
+    Input Text       ${EMAIL_FIELD_WORKSPACE}  ${NEW_USER_EMAIL}
+    Click Element    ${PERMISSIONS_FIELD_WORKSPACE}
+    Click Element    ${Dashboard_Premission}
+    Click Element    ${Datascource_Premission}
+    Click Element    ${Dataset_Premission}
+    Click Element    ${chat_Premission}
+    Click Element    css=.ant-form
+    Click Element    ${SUBMIT_BUTTON_INVITE_USER}
 Submit New User Workspace Creation
-    Wait Until Page Contains Element    xpath=//*[normalize-space()='Invitation sent successfully.']     5s
+    Wait Until Page Contains Element    css=.ant-notification-notice-description     5s
 
 Verify New User Workspace Creation Success
     Wait Until Page Contains     nio3cool12@swagpapa.com  5s
 
 Delete The Dataset
     go to  ${ADD_DADATCOURCE_URL}
+    Sleep    3s
     Click Element    ${Datasets}
+    Wait Until Page Contains   Data Center
     Sleep    4s
     Click Element    ${Dataset_Deleting_bt}
     Sleep    2s
@@ -205,7 +215,25 @@ Delete The Datasource
     Sleep    2s
     Click Element    ${Datasource_Cfr_bt_del}
 
+Delete The Dashboard
+    Go To    ${ADD_DASHBOARD_URL}
+    Wait Until Page Contains   Dashboards
+    Sleep    3s
+    Click Element    ${delete_list_bt}
+    Sleep    2s
+    Click Element    ${delete_button}
+    Sleep    2s
+    Click Element    ${delete_button_Cfr_dash}
+Delete User From Workspace
+    Go To    ${ADD_USERWORKSPACE_URL}
+    Wait Until Page Contains   Workspace
+    Sleep    3s
+    Click Element    ${Dropdown_button}
+    Sleep    2s
+    Click Element    ${delete_user_button}
+    Click Element    css=button[class='ant-btn css-240cud ant-btn-link ant-btn-color-link ant-btn-variant-link'] span
+
 
 Verify Login Failure
-    Wait Until Element Is Visible   xpath=//*[@id="root"]/div[2]    10s
-    Element Text Should Be          xpath=//*[@id="root"]/div[2]    Une erreur s'est produite lors de la connexion.
+    Wait Until Element Is Visible   css=.ant-notification-notice-message    10s
+    Element Text Should Be          css=.ant-notification-notice-message    Error
