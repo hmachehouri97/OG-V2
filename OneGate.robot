@@ -4,7 +4,7 @@ Library           SeleniumLibrary
 Library           ScreenCapLibrary
 Resource          Ressources/Varibles.robot
 Resource          Ressources/Keywaords.robot
-Suite Setup       Open Browser To SignUp Page
+Suite Setup       CI-Compatible Chrome Launch
 Suite Teardown    Close All Browsers
 
 *** Test Cases ***
