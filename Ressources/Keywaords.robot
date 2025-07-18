@@ -7,9 +7,16 @@ Resource  Varibles.robot
 Library    ScreenCapLibrary
 
 *** Keywords ***
+CI-Compatible Chrome Launch
+    ${tmpdir}=     Evaluate    __import__('tempfile').mkdtemp()    modules=sys
+    ${options}=    Evaluate    __import__('selenium.webdriver').ChromeOptions()    modules=sys
+    Call Method    ${options}    add_argument    --headless=new
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-gpu
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --user-data-dir=${tmpdir}
+    Open Browser   ${LOGIN_URL}    ${BROWSER}    options=${options}
 Open Browser To SignUp Page
-    ${options}=    Evaluate    opt=__import__('selenium.webdriver').ChromeOptions(); opt.add_argument("--headless=new"); opt.add_argument("--no-sandbox"); opt.add_argument("--disable-gpu"); opt.add_argument("--disable-dev-shm-usage"); opt    sys
-    Open Browser    ${LOGIN_URL}    ${BROWSER}    options=${options}
     Maximize Browser Window
     Set Selenium Speed    0.4
     Wait Until Page Contains Element    xpath=//*[@id="dataone-app"]/div/div[1]/div[2]/h1    10s  
