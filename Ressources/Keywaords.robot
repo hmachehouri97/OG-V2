@@ -8,7 +8,8 @@ Library    ScreenCapLibrary
 
 *** Keywords ***
 Open Browser To SignUp Page
-    Open Browser    ${LOGIN_URL}    ${BROWSER}    --headless --disable-gpu --no-sandbox --disable-dev-shm-usage --window-size=1920,1080 --user-data-dir="${OUTPUT DIR}/edge-user-data-${TEST_NAME}"
+    ${options}=    Evaluate    ["--headless=new", "--disable-gpu", "--no-sandbox", "--disable-dev-shm-usage"]    sys
+    Open Browser    ${LOGIN_URL}    ${BROWSER}    options=${options}
     Maximize Browser Window
     Set Selenium Speed    0.4
     Wait Until Page Contains Element    xpath=//*[@id="dataone-app"]/div/div[1]/div[2]/h1    10s  
