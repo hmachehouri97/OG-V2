@@ -116,3 +116,7 @@ ${Name}              postgres
 ${Port}              6543     
 ${Username}          postgres.jurkpdkeybprgdfurftu
 ${dataset_name_datasources}      Postgresqol_1
+
+
+
+${TEST_NAME}    E2E Test
