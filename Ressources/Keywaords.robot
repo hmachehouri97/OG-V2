@@ -195,9 +195,6 @@ Fill New User Workspace Form
 Submit New User Workspace Creation
     Wait Until Page Contains Element    css=.ant-notification-notice-description     5s
 
-Verify New User Workspace Creation Success
-    Wait Until Page Contains     nio3cool12@swagpapa.com  5s
-
 Delete The Dataset
     go to  ${ADD_DADATCOURCE_URL}
     Sleep    3s
