@@ -8,7 +8,7 @@ Library    ScreenCapLibrary
 
 *** Keywords ***
 Open Browser To SignUp Page
-    Open Browser    ${LOGIN_URL}    ${BROWSER}    options=add_argument(--user-data-dir=/tmp/chrome-user-data-${TEST NAME})
+    Open Browser    ${LOGIN_URL}    ${BROWSER}    options=add_argument(--user-data-dir=/tmp/chrome-user-data)
     Maximize Browser Window
     Set Selenium Speed    0.4
     Wait Until Page Contains Element    xpath=//*[@id="dataone-app"]/div/div[1]/div[2]/h1    10s  
