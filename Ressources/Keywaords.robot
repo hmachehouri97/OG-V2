@@ -37,8 +37,7 @@ login With Invalid Credentials
 
 Input Username
     [Arguments]                 ${VALID_EMAIL}
-    Input Text                  id=username            ${VALID_EMAIL} 
-
+    Input Text                  id=username         ${VALID_EMAIL} 
 Input Password
     [Arguments]                 ${VALID_PASS}    
     Input Text                  id=password         ${VALID_PASS}
