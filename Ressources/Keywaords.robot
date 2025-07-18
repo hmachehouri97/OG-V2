@@ -9,7 +9,7 @@ Library    ScreenCapLibrary
 *** Keywords ***
 CI-Compatible Chrome Launch
     ${tmpdir}=     Evaluate    __import__('tempfile').mkdtemp()    modules=sys
-    ${options}=    Evaluate    __import__('selenium.webdriver.chrome.options').Options()    modules=sys
+    ${options}=    Evaluate    __import__('selenium.webdriver.chrome.options', fromlist=['Options']).Options()    modules=sys
     Call Method    ${options}    add_argument    --headless=new
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-gpu
