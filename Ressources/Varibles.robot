@@ -116,4 +116,3 @@ ${Name}              postgres
 ${Port}              6543     
 ${Username}          postgres.jurkpdkeybprgdfurftu
 ${dataset_name_datasources}      Postgresqol_1
-${CHROME_OPTIONS}    add_argument(--user-data-dir=/tmp/chrome-user-data)
