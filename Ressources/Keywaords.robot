@@ -6,9 +6,6 @@ Library    Process
 Resource  Varibles.robot
 Library    ScreenCapLibrary
 
-*** Variables ***
-${CHROME_OPTIONS}    add_argument(--user-data-dir=/tmp/chrome-user-data-${RANDOM})
-
 *** Keywords ***
 Open Browser To SignUp Page
     Open Browser    ${LOGIN_URL}    ${BROWSER}    options=${CHROME_OPTIONS}
