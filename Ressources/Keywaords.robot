@@ -1,5 +1,5 @@
 *** Settings ***
-Library  SeleniumLibrary
+Library   SeleniumLibrary
 Library   OperatingSystem
 Library    XML
 Library    Process
