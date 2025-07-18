@@ -23,6 +23,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install robotframework robotframework-seleniumlibrary robotframework-screencaplibrary
           sudo apt-get update
+          sudo apt-get install -y wget gnupg
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+          sudo apt-get update
           sudo apt-get install -y google-chrome-stable chromium-chromedriver
           sudo ln -sf /usr/bin/google-chrome-stable /usr/bin/google-chrome
           google-chrome --version
