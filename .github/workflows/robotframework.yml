@@ -18,8 +18,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Google Chrome
-        uses: browser-actions/setup-chrome@v1
+      - name: Install Microsoft Edge
+        uses: browser-actions/setup-edge@v1
 
       - name: Install dependencies
         run: |
@@ -28,9 +28,9 @@ jobs:
 
       - name: Run Robot Framework tests
         env:
-          CHROME_BIN: ${{ env.CHROME_PATH }}
+          EDGE_BIN: ${{ env.EDGE_PATH }}
         run: |
-          robot --outputdir results OneGate.robot
+          robot --variable BROWSER:edge --outputdir results OneGate.robot
 
       - name: Upload Robot Framework results
         uses: actions/upload-artifact@v4

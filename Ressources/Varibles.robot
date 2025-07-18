@@ -1,6 +1,6 @@
 *** Variables ***
 ${LOGIN_URL}    https://workspace-preprod.onegate.ai/auth/sign-in
-${BROWSER}      chrome
+${BROWSER}      Edge
 ${VALID_EMAIL}  mspmit9@pdf-cutter.com
 ${VALID_PASS}   Admin@123
 ${INVALID_EMAIL}  admin@admins.com
