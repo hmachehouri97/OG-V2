@@ -30,7 +30,7 @@ jobs:
         env:
           CHROME_BIN: ${{ env.CHROME_PATH }}
         run: |
-          robot --outputdir results .
+          robot --outputdir results OneGate.robot
 
       - name: Upload Robot Framework results
         uses: actions/upload-artifact@v4
