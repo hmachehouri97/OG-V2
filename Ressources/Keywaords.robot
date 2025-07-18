@@ -8,7 +8,7 @@ Library    ScreenCapLibrary
 
 *** Keywords ***
 Open Browser To SignUp Page
-    ${options}=    Evaluate    ["--headless=new", "--disable-gpu", "--no-sandbox", "--disable-dev-shm-usage"]    sys
+    ${options}=    Evaluate    opt=__import__('selenium.webdriver').ChromeOptions(); opt.add_argument("--headless=new"); opt.add_argument("--no-sandbox"); opt.add_argument("--disable-gpu"); opt.add_argument("--disable-dev-shm-usage"); opt    sys
     Open Browser    ${LOGIN_URL}    ${BROWSER}    options=${options}
     Maximize Browser Window
     Set Selenium Speed    0.4
