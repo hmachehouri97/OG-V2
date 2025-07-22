@@ -60,7 +60,7 @@ Navigate To Add DATA Sources
     Go To    https://workspace-preprod.onegate.ai/data-management/data-source
     Wait Until Page Contains    Data Center
     Click Button     ${Created_Data_Sources_button}
-    Sleep    2s
+    Sleep    4s
     Click Element    ${NAME_DATABESE_NAME}
 
 FIll DATA Sources
