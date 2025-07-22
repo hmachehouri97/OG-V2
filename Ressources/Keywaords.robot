@@ -24,6 +24,7 @@ Open Browser To SignUp Page
     Wait Until Page Contains Element    xpath=//*[@id="dataone-app"]/div/div[1]/div[2]/h1    10s  
 Login With Credentials
     Reload Page
+    Sleep    4s
     [Arguments]                 ${VALID_EMAIL}         ${VALID_PASS}
     Input Username              ${VALID_EMAIL}
     Input Password              ${VALID_PASS}
