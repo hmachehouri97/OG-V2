@@ -16,7 +16,7 @@ ${PASSWORD_CONFIRMTION_FIELD}      id=signUp_confirmNewPassword
 ${SUBMIT_BUTTON}             xpath=//*[@id="signUp"]/div[5]/div/div/div/div/button
 
 # Add Created Data Sources Postgres
-${ADD_DADATCOURCE_URL}       https://workspace-preprod.onegate.ai/data-management/data-source
+${ADD_DADATCOURCE_URL}           https://workspace-preprod.onegate.ai/data-management/data-source
 ${Created_Data_Sources_button}   css=.ant-btn-default
 ${NAME_DATABESE_NAME}            css=div:nth-child(1) > .sc-cYGPea > .sc-EkXxQ:nth-child(2)
 ${Display_name_input}            xpath=//input[@id='displayName']
