@@ -3,7 +3,7 @@ Library   SeleniumLibrary
 Library   OperatingSystem
 Library    XML
 Library    Process
-Resource  Varibles.robot
+Resource   Varibles.robot
 Library    ScreenCapLibrary
 
 *** Keywords ***
@@ -15,10 +15,12 @@ CI-Compatible Chrome Launch
     Call Method    ${options}    add_argument    --disable-gpu
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
     Call Method    ${options}    add_argument    --user-data-dir\=${tmpdir}
+    Call Method    ${options}    add_argument    --window-size\=1920,1080
     Open Browser   ${LOGIN_URL}    ${BROWSER}    options=${options}
+    
 Open Browser To SignUp Page
     Maximize Browser Window
-    Set Selenium Speed    0.4
+    Set Selenium Speed    0.6
     Wait Until Page Contains Element    xpath=//*[@id="dataone-app"]/div/div[1]/div[2]/h1    10s  
 Login With Credentials
     Reload Page
@@ -37,7 +39,7 @@ login With Invalid Credentials
 
 Input Username
     [Arguments]                 ${VALID_EMAIL}
-    Input Text                 id=username         ${VALID_EMAIL} 
+    Input Text                  id=username         ${VALID_EMAIL} 
 Input Password
     [Arguments]                 ${VALID_PASS}    
     Input Text                  id=password         ${VALID_PASS}
@@ -56,7 +58,7 @@ Verify Login Success
 Navigate To Add DATA Sources
     Go To    https://workspace-preprod.onegate.ai/data-management/data-source
     Wait Until Page Contains    Data Center
-    Click Button    ${Created_Data_Sources_button}
+    Click Button     ${Created_Data_Sources_button}
     Sleep    2s
     Click Element    ${NAME_DATABESE_NAME}
 
@@ -71,7 +73,7 @@ FIll DATA Sources
     Click Element  ${SUBMIT_BUTTON_DATASURCE}
     Sleep    10s
     Input Text       ${dataset_name_input}   ${dataset_name_datasources}
-    Click Element    ${Continue_button_1}
+    Click Button    ${Continue_button_1}
     Sleep    5s
 Data Prep
     Click Element    ${data_selection_departments}
@@ -89,21 +91,25 @@ AI training
      Click Element    ${Continue_button_3}     
      Sleep    5s
      Click Element    ${skipe_button}
+     Sleep    2s
+     Wait Until Element Contains    css=.me > h3:nth-child(2)    Your dataset was created successfully
+     Click Button    css=.ant-btn-primary
 
 Verify Datasource and dataset Creation Success
     Sleep    2s
-    Table Column Should Contain    xpath=/html/body/div[16]/div/div[2]/div/main/div/div/div[2]/div[3]/div/div[2]/div/div/div[1]/table/tbody/tr/td[1]/div/span   1    ${Display_name} 
+    Table Column Should Contain    xpath=/html/body/div/div/div[2]/div/main/div/div/div[2]/div[3]/div/div[2]/div/div/div[1]/table/tbody/tr/td[1]/div/span   1    ${Display_name} 
     Click Element    ${Datasets}
     Sleep    2s
-    Table Column Should Contain    xpath=/html/body/div[16]/div/div[2]/div/main/div/div/div[2]/div[3]/div/div[2]/div/div/div[1]/table/tbody/tr[2]/td[1]/div/span    1   ${dataset_name}
+    Table Column Should Contain    xpath=/html/body/div/div/div[2]/div/main/div/div/div[2]/div[3]/div/div[2]/div/div/div[1]/table/tbody/tr/td[1]/div/span    1   ${dataset_name_datasources}
 Navigate to Chat
     Go To           ${Chat_URl}
-    Sleep   10s
+    Sleep   15s
     Click Element    ${Dataset_connection}
+    Sleep    2s
     Click Element    ${dataset_name}
 Chat With The AI
     Input Text       ${Chat_input}    What information is available about each department?
-    Sleep    8s
+    Sleep    5s
     Click Element    ${Chat_button_send}
     Sleep    20s
 Send The Chart To Dashboard
@@ -121,8 +127,8 @@ Send The Chart To Dashboard
     Click Element    ${Add_Page_button}
     Sleep    5s
     Input Text       ${NAME_PAGE_FIELD}    ${NEW_PAGE_NAME}
-    Click Element    ${TYPE_PAGE_FIELD}
-    Click Element    ${TYPE_PAGE}
+    Click Button     ${TYPE_PAGE_FIELD}   
+    click Element    ${TYPE_PAGE}
     Click Element    ${SUBMIT_PAGE_BUTTON}
     Sleep    6s
     Click Element    xpath=//h3[contains(.,'${NEW_PAGE_NAME}')]
@@ -139,7 +145,7 @@ Navigate To Add Dashboard
     Wait Until Element Is Visible    ${NAME_DASHBOARD_FIELD}    10s
 
 Fill Dashboard Form
-    Input Text      ${NAME_DASHBOARD_FIELD}  ${NEW_NAME_DASHBOAD}
+    Input Text      ${NAME_DASHBOARD_FIELD}          ${NEW_NAME_DASHBOAD}
     Input Text      ${DESCRIPTION_DASHBOARD_FIELD}   ${NEW_DESCRIPTION_DASHBOARD} 
     Click Element   ${SUBMIT_BUTTON_DASHBOARD}
 Submit Dashboard Creation
@@ -174,7 +180,7 @@ Navigate To Add Workspace
     Wait Until Element Is Visible    ${NAME_Workspace_FIELD}    10s
 
 Fill Workspace Form
-    Input Text      ${NAME_Workspace_FIELD}  ${NEW_WORKSPACE_NAME} 
+    Input Text      ${NAME_Workspace_FIELD}    ${NEW_WORKSPACE_NAME} 
     Click Element   ${SUBMIT_BUTTON_Workspace}
 
 Submit Workspace Creation
@@ -185,7 +191,7 @@ Navigate To Add New User
     Wait Until Page Contains   Workspace
     Sleep    2s
     Click Element    css=div[class='ant-layout css-1rmcml1'] button:nth-child(1) span:nth-child(1)
-    Click Element    css=div[class='sc-chSgpA fzksCJ'] div:nth-child(1)
+    Click Element    xpath=(//div[normalize-space()='Invite by email'])[1]    
     Wait Until Element Is Visible    ${FIRST_NAME_FIELD_WORKSPACE}    10s
 
 Fill New User Workspace Form
@@ -203,7 +209,7 @@ Submit New User Workspace Creation
     Wait Until Page Contains Element    css=.ant-notification-notice-description     5s
 
 Delete The Dataset
-    go to  ${ADD_DADATCOURCE_URL}
+    go to            ${ADD_DADATCOURCE_URL}
     Sleep    3s
     Click Element    ${Datasets}
     Wait Until Page Contains   Data Center
@@ -213,14 +219,14 @@ Delete The Dataset
     Click Element    ${Dataset_Cfr_bt_del}
 
 Delete The Datasource
-    Go To    ${ADD_DADATCOURCE_URL}
+    Go To            ${ADD_DADATCOURCE_URL}
     Sleep    4s
     Click Element    ${Datasource_Deleting_bt}
     Sleep    2s
     Click Element    ${Datasource_Cfr_bt_del}
 
 Delete The Dashboard
-    Go To    ${ADD_DASHBOARD_URL}
+    Go To            ${ADD_DASHBOARD_URL}
     Wait Until Page Contains   Dashboards
     Sleep    3s
     Click Element    ${delete_list_bt}
@@ -229,7 +235,7 @@ Delete The Dashboard
     Sleep    2s
     Click Element    ${delete_button_Cfr_dash}
 Delete User From Workspace
-    Go To    ${ADD_USERWORKSPACE_URL}
+    Go To            ${ADD_USERWORKSPACE_URL}
     Wait Until Page Contains   Workspace
     Sleep    3s
     Click Element    ${Dropdown_button}

@@ -21,6 +21,8 @@ Create New Data Source
     FIll DATA Sources
     Data Prep
     AI training
+Verify Datasource and dataset Creation Success
+    Verify Datasource and dataset Creation Success
 Navigate to Chat
     Navigate to Chat
 Chat With AI

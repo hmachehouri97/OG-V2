@@ -28,7 +28,7 @@ ${Port_input}                    xpath=//input[@id='port']
 ${Username_input}                xpath=//input[@id='username']
 ${SUBMIT_BUTTON_DATASURCE}       css=.ant-btn-primary
 ${dataset_name_input}            id=datasetName
-${Continue_button_1}             css=.ant-btn-primary > .sc-hmSPIQ
+${Continue_button_1}             css=.ant-btn-primary
 ${data_selection_departments}                 css=.ant-tree-treenode:nth-child(1) .ant-tree-checkbox-inner
 ${data_selection_employees}                   css=.ant-tree-treenode:nth-child(2) .ant-tree-checkbox-inner
 ${data_selection_project_assignments}         css=.ant-tree-treenode:nth-child(3) .ant-tree-checkbox-inner
@@ -40,7 +40,7 @@ ${Ai_button_continue}            css=.ant-btn-primary > span
 ${departments_table_selection}   xpath=/html/body/div[1]/div/div[2]/div/main/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/div[1]/div/div[3]/div/div/div/div[2]/span[3]/span
 ${Continue_button_3}             xpath=/html/body/div[1]/div/div[2]/div/main/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div[2]/div[2]/button
 ${AI_button__genrate}            xpath=/html/body/div[2]/div/div[2]/div/main/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/div[2]/form/div/div/div[2]/div/div/textarea
-${skipe_button}                  xpath=//button[@class='ant-btn css-1rmcml1 ant-btn-text ant-btn-color-default ant-btn-variant-text ant-btn-lg sc-dSSyN bEKtYn']
+${skipe_button}                  xpath=/html/body/div[1]/div/div[2]/div/main/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div[2]/form/div[2]/button[2]/span
 ${datasets_button}               xpath=//div[@id='rc-tabs-7-tab-data-sets']
 ${Datasets}                      css=div.ant-tabs-tab:nth-child(2)
 ${Dataset_Deleting_bt}           css=.td-actions > a:nth-child(3)
